@@ -1,0 +1,27 @@
+{
+  "name": "Backend Dev Container",
+  "initializeCommand": "docker network inspect mynetwork || docker network create mynetwork",
+  "dockerComposeFile": [
+    "../../docker-compose.yml",
+    "./docker-compose.yml"
+  ],
+  "service": "backend",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash"
+          }
+        }
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "Prisma.prisma"
+      ]
+    }
+  }
+}

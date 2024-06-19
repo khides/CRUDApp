@@ -1,0 +1,19 @@
+services:
+  frontend:
+    container_name: Frontend-DevContainer
+    build:
+      context: ./frontend
+      dockerfile: ../.devcontainer/frontend/Dockerfile
+    volumes:
+      - ./frontend:/app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    tty: true
+    networks:
+      - mynetwork
+    command: /bin/bash
+
+networks:
+  mynetwork:
+    external: true

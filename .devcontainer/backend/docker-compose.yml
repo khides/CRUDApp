@@ -1,0 +1,22 @@
+services:
+  backend:
+    container_name: Backend-DevContainer
+    build:
+      context: ./backend
+      dockerfile: ../.devcontainer/backend/Dockerfile
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
+    ports:
+      - "3001:3001"
+    tty: true
+    depends_on:
+      - db
+    networks:
+      - mynetwork
+    command: /bin/bash
+
+
+networks:
+  mynetwork:
+    external: true
