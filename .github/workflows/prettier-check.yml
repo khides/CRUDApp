@@ -1,0 +1,37 @@
+name: Prettier Check
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/app/**'
+
+jobs:
+  prettier:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Cache node modules
+      id: cache-npm
+      uses: actions/cache@v3
+      with:
+        path: frontend/node_modules
+        key: ${{ runner.os }}-build-node-${{ hashFiles('frontend/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-build-node-
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies if cache is not found
+      if: steps.cache-npm.outputs.cache-hit != 'true'
+      run: npm ci
+      working-directory: frontend
+
+    - name: Run Prettier check in app
+      run: npm run format-check
+      working-directory: frontend
