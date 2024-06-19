@@ -1,0 +1,13 @@
+{
+    "recommendations": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-vscode-remote.remote-containers",
+        "ms-azuretools.vscode-docker",
+        "mhutchie.git-graph",
+        "donjayamanne.githistory",
+        "prisma.prisma",
+        "wayou.vscode-todo-highlight",
+        "gruntfuggly.todo-tree"
+    ]
+}
